@@ -1,5 +1,6 @@
 import { MODULE_BY_KEY } from '@/data/modules'
 import { allRows, listRows, resetRows, saveRows } from '@/data/local-store'
+import { dayDistribution, keyItemBundle, patrolSnapshot } from '@/api/governance-service'
 import type { ActionResult, EntryRow, ModuleMeta, OverviewResult, PageResult } from '@/data/types'
 
 // 会写进数据的「往回走」动作：命中就把这条记录标成异常态，看板上能一眼看出来。
@@ -86,8 +87,10 @@ export function downloadEntries(key: string): void {
 
 export function loadOverview(): OverviewResult {
   const rows = allRows()
+  const snapshot = patrolSnapshot()
   const modules = [...MODULE_BY_KEY.values()].map((meta) => {
-    const entries = rows[meta.key] ?? []
+    // 巡检模块与看板、排班统一使用去重后的口径：同一份账，不允许出现两个数。
+    const entries = meta.key === 'patrol' ? snapshot.kept : rows[meta.key] ?? []
     return {
       name: meta.name,
       created: entries.length,
@@ -101,5 +104,17 @@ export function loadOverview(): OverviewResult {
     { label: '待处理', value: modules.reduce((sum, item) => sum + item.pending, 0) },
     { label: '异常量', value: modules.reduce((sum, item) => sum + item.abnormal, 0) },
   ]
-  return { cards, modules }
+  const items = keyItemBundle()
+  return {
+    cards,
+    modules,
+    patrol: {
+      raw: snapshot.totalRaw,
+      kept: snapshot.totalKept,
+      merged: snapshot.totalMerged,
+      inferred: snapshot.totalInferred,
+    },
+    keyItems: { total: items.total, groups: items.groups.map((group) => ({ label: group.label, count: group.count })) },
+    dayDistribution: dayDistribution(),
+  }
 }

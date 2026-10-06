@@ -8,6 +8,11 @@ export type EntryRow = {
   [field: string]: string | number | boolean
 }
 
+// 治理层（派工/失败记录等）不是标准业务模块，行结构更宽，单独一个类型。
+export type GenericRow = {
+  [field: string]: unknown
+}
+
 export type ModuleMeta = {
   key: string
   name: string
@@ -35,4 +40,8 @@ export type ActionResult = {
 export type OverviewResult = {
   cards: { label: string; value: number }[]
   modules: { name: string; created: number; pending: number; abnormal: number }[]
+  // 治理口径：概览与看板共用，条数只能来自这里，避免出现两个数。
+  patrol: { raw: number; kept: number; merged: number; inferred: number }
+  keyItems: { total: number; groups: { label: string; count: number }[] }
+  dayDistribution: { date: string; weekday: string; isToday: boolean; count: number }[]
 }

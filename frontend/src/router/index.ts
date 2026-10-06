@@ -10,6 +10,7 @@ const Firecontrol = () => import('@/views/firecontrol/index.vue')
 const Lighting = () => import('@/views/lighting/index.vue')
 const Access = () => import('@/views/access/index.vue')
 const Patrol = () => import('@/views/patrol/index.vue')
+const Schedule = () => import('@/views/schedule/index.vue')
 const Settlement = () => import('@/views/settlement/index.vue')
 const Leak = () => import('@/views/leak/index.vue')
 const Maintenance = () => import('@/views/maintenance/index.vue')
@@ -19,6 +20,8 @@ const Energy = () => import('@/views/energy/index.vue')
 const Device = () => import('@/views/device/index.vue')
 const Entryapprove = () => import('@/views/entryapprove/index.vue')
 const Duty = () => import('@/views/duty/index.vue')
+const KeyItems = () => import('@/views/keyitems/index.vue')
+const Dispatch = () => import('@/views/dispatch/index.vue')
 
 const router = createRouter({
   history: createWebHistory(),
@@ -33,6 +36,7 @@ const router = createRouter({
     { path: '/lighting', name: 'lighting', component: Lighting },
     { path: '/access', name: 'access', component: Access },
     { path: '/patrol', name: 'patrol', component: Patrol },
+    { path: '/schedule', name: 'schedule', component: Schedule },
     { path: '/settlement', name: 'settlement', component: Settlement },
     { path: '/leak', name: 'leak', component: Leak },
     { path: '/maintenance', name: 'maintenance', component: Maintenance },
@@ -42,6 +46,8 @@ const router = createRouter({
     { path: '/device', name: 'device', component: Device },
     { path: '/entryapprove', name: 'entryapprove', component: Entryapprove },
     { path: '/duty', name: 'duty', component: Duty },
+    { path: '/keyitems', name: 'keyitems', component: KeyItems },
+    { path: '/dispatch', name: 'dispatch', component: Dispatch },
   ],
 })
 

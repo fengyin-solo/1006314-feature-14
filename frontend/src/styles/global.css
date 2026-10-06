@@ -35,3 +35,96 @@ body { margin: 0; background: #f6f8fb; color: #1f2937; }
 .error-text { color: #b42318; }
 .status-legend { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 10px; font-size: 12px; color: var(--muted); }
 .legend-item { background: #eef2f7; border-radius: 999px; padding: 2px 10px; }
+.legend-toggle { display: inline-flex; align-items: center; gap: 4px; background: #fff7ed; border-radius: 999px; padding: 2px 10px; color: #9a3412; }
+
+/* 排班视图 */
+.board-wrap { overflow-x: auto; background: #fff; border: 1px solid var(--border); border-radius: 8px; }
+.schedule-grid { border-collapse: collapse; min-width: 960px; }
+.schedule-grid th, .schedule-grid td { border: 1px solid var(--border); vertical-align: top; }
+.schedule-grid thead th { background: #f1f5f9; padding: 8px 10px; font-size: 13px; text-align: center; }
+.schedule-grid thead th.today { background: #dbeafe; }
+.team-col { width: 130px; background: #f8fafc; padding: 8px 10px; font-size: 13px; font-weight: 600; position: sticky; left: 0; z-index: 1; }
+.weekday { display: block; font-weight: 600; }
+.day-date { display: block; color: var(--muted); font-size: 12px; }
+.today-tag { display: inline-block; margin-top: 2px; font-size: 11px; color: #fff; background: var(--brand); border-radius: 999px; padding: 0 8px; }
+.board-cell { width: calc((100% - 130px) / 7); min-width: 140px; height: 92px; padding: 4px; }
+.board-cell.today { background: #eff6ff; }
+.board-cell.overloaded { background: #fef2f2; }
+.cell-task { display: block; width: 100%; text-align: left; border: 1px solid #bfdbfe; background: #eff6ff; border-radius: 6px; padding: 4px 6px; margin-bottom: 4px; cursor: pointer; }
+.cell-task:hover { border-color: var(--brand); background: #dbeafe; }
+.route-name { display: block; font-size: 12px; font-weight: 600; color: #1e3a8a; }
+.plan-date { display: block; font-size: 11px; color: var(--muted); }
+.task-meta { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin-top: 2px; }
+.task-code { font-size: 10px; color: var(--muted); }
+.cell-empty { display: block; text-align: center; color: #cbd5e1; padding-top: 20px; }
+
+.tag { display: inline-block; font-size: 10px; line-height: 16px; border-radius: 4px; padding: 0 5px; white-space: nowrap; }
+.tag.inferred { background: #fef3c7; color: #92400e; }
+.tag.backfilled { background: #e0e7ff; color: #3730a3; }
+.tag.issue { background: #fee2e2; color: #991b1b; }
+.tag.merged-tag { background: #e2e8f0; color: #475569; }
+
+.alert-strip { margin-bottom: 12px; display: flex; flex-direction: column; gap: 4px; }
+.alert-line { margin: 0; font-size: 12px; border-radius: 6px; padding: 6px 10px; }
+.alert-line.warn { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+.alert-line.gap { background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; }
+.alert-line a { margin-left: 6px; }
+
+/* 通用徽标/状态 */
+.kind-badge { display: inline-block; border-radius: 999px; padding: 1px 9px; font-size: 11px; background: #e2e8f0; color: #334155; }
+.kind-badge.duplicate { background: #e2e8f0; color: #475569; }
+.kind-badge.inferred { background: #fef3c7; color: #92400e; }
+.kind-badge.hazard { background: #fee2e2; color: #991b1b; }
+.kind-badge.legacy { background: #dcfce7; color: #166534; }
+.kind-badge.failure { background: #ffedd5; color: #9a3412; }
+.kind-badge.patrol { background: #dbeafe; color: #1e40af; }
+.status-pill { border-radius: 999px; padding: 1px 10px; font-size: 12px; }
+.status-pill.待处理 { background: #fef3c7; color: #92400e; }
+.status-pill.处理中 { background: #dbeafe; color: #1e40af; }
+.status-pill.已闭环 { background: #dcfce7; color: #166534; }
+
+/* 关键条目 / 派工 */
+.stat-card.clickable { cursor: pointer; }
+.stat-value.activeKind { color: var(--brand); }
+.sim-bar, .kind-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+.sim-label, .sim-hint { font-size: 12px; color: var(--muted); }
+.btn.small { padding: 3px 10px; font-size: 12px; }
+.key-table tr.duplicate { background: #fafafa; }
+.key-table tr.hazard { background: #fffafa; }
+.key-table tr.failure { background: #fffaf5; }
+.opinion-cell textarea, .dispatch-table textarea { width: 100%; resize: vertical; font: inherit; font-size: 12px; padding: 4px 6px; border: 1px solid var(--border); border-radius: 4px; margin-bottom: 4px; }
+.opinion-feedback { margin: 2px 0 0; font-size: 11px; color: #166534; }
+.failure-reason { margin: 0 0 4px; font-size: 12px; color: #9a3412; }
+.trail-cell { min-width: 280px; }
+.trail-list { margin: 0; padding-left: 14px; font-size: 11px; color: var(--muted); }
+.trail-list li { margin-bottom: 3px; }
+.trail-time { margin-right: 6px; color: #94a3b8; }
+.trail-kind { display: inline-block; margin-right: 6px; padding: 0 6px; border-radius: 4px; background: #e0f2fe; color: #075985; }
+.trail-kind.merged { background: #fef3c7; color: #92400e; }
+.notes-section { margin-top: 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; }
+.notes-section h3 { margin: 0 0 8px; font-size: 14px; }
+.notes-list { margin: 0; padding-left: 18px; font-size: 12px; color: #334155; line-height: 1.9; }
+
+/* 概览扩展 */
+.overview-block { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-bottom: 14px; }
+.block-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.block-head h3 { margin: 0; font-size: 14px; }
+.stat-row.compact .stat-card { padding: 8px 10px; }
+.distribution { display: flex; gap: 8px; align-items: flex-end; min-height: 170px; }
+.dist-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; text-decoration: none; color: #334155; border: 1px solid var(--border); border-radius: 6px; padding: 8px 4px; background: #f8fafc; min-height: 150px; }
+.dist-col:hover { border-color: var(--brand); background: #eff6ff; }
+.dist-col.today { border-color: var(--brand); background: #eff6ff; }
+.dist-count { font-size: 16px; font-weight: 700; }
+.dist-bar { width: 32px; background: linear-gradient(#60a5fa, #1d4ed8); border-radius: 4px 4px 0 0; margin: 4px 0; }
+.dist-weekday { font-size: 12px; }
+.dist-date { font-size: 11px; color: var(--muted); }
+.reconcile { margin: 10px 0 0; font-size: 12px; color: var(--muted); }
+.unified-tag { margin-left: 8px; font-size: 11px; background: #dcfce7; color: #166534; border-radius: 999px; padding: 0 8px; }
+
+/* 巡检/隐患明细补充 */
+.patrol-table tr.merged td { color: #94a3b8; background: #fafafa; }
+.merge-note { font-size: 11px; color: #94a3b8; }
+.query-hint { font-size: 12px; color: #1e40af; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 6px 10px; margin-bottom: 10px; }
+.success-text { color: #166534; }
+.source-legend { background: #fee2e2; color: #991b1b; }
+tr.sourced td { background: #fffafa; }
