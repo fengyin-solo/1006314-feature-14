@@ -35,4 +35,19 @@ export type ActionResult = {
 export type OverviewResult = {
   cards: { label: string; value: number }[]
   modules: { name: string; created: number; pending: number; abnormal: number }[]
+  patrol: {
+    detailCount: number
+    weekCount: number
+    pendingHazards: number
+    consistent: boolean
+    distribution: { date: string; total: number; teams: number }[]
+    focus: {
+      kind: string
+      title: string
+      detail: string
+      refId: string
+      module: string
+      level: string
+    }[]
+  }
 }
